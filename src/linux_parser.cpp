@@ -224,9 +224,9 @@ string LinuxParser::Ram(int pid) {
         KB = std::stod(value);
       }
     }
-    MB = std::to_string(KB * 0.0009765625);
+    MB = std::to_string((int)(KB * 0.0009765625));
   }
-  return MB + " MB";
+  return MB;
 }
 
 // TODO: Read and return the user ID associated with a process

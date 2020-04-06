@@ -1,6 +1,5 @@
 #include <cstddef>
 #include <iostream>
-#include <set>
 #include <string>
 #include <unistd.h>
 #include <vector>
@@ -10,7 +9,6 @@
 #include "processor.h"
 #include "system.h"
 
-using std::set;
 using std::size_t;
 using std::string;
 using std::vector;
@@ -20,13 +18,10 @@ Processor &System::Cpu() { return cpu_; }
 
 // TODO: Return a container composed of the system's processes
 vector<Process> &System::Processes() {
+  processes_.clear();
   vector<int> pids = LinuxParser::Pids();
-  set<int> pid_set;
   for (int p : pids) {
-    pid_set.insert(p);
-  }
-  for (int s : pid_set) {
-    Process process(s);
+    Process process(p);
     processes_.push_back(process);
   }
 
